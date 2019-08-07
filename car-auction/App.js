@@ -10,6 +10,7 @@ import {Ionicons} from '@expo/vector-icons'
 import MyCarListScreen from './src/screens/MyCarListScreen'
 import MyCarDetailScreen from './src/screens/MyCarDeatilScreen';
 import MyCarAddScreen from './src/screens/MyCarAddScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 const auction = function tempAuction(){
     return(
@@ -34,6 +35,9 @@ const defaultNavigationOptions={
 
 
 const MycarStack = createStackNavigator({
+  'Login' :  {
+    screen : LoginScreen
+  },
   'MyCarList':{
     screen:MyCarListScreen
   },
