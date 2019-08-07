@@ -3,24 +3,52 @@ import {View, Text, FlatList } from 'react-native'
 import CarItem from './CarItem'
 
 export default class CarList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            refreshing : false
+        }
+    }
     static defaultProps = {
         carList : Object()
     }
 
     renderCarItem({item, index, separators}){
         return (
-            <CarItem item = {item} ></CarItem>
+            <CarItem 
+            item = {item}
+            onPress = {() => this.props.navigation.push('MyCarDetail',{
+                item:item
+            })
+            } 
+        />
         )
 
     }
     render() {
-        console.log(this.props.carList)
+        // console.log(this.props.carList)
         
          return (
              <View>
                  <FlatList data = {this.props.carList}
-                 renderItem = {this.renderCarItem}
+                 renderItem = {this.renderCarItem.bind(this)}
                  keyExtractor = {(item, index) => item.vin}
+                 refreshing = {this.state.refreshing}
+                 onRefresh = {() => {
+                     this.setState({refreshing : true})
+                     console.log("새로고침중입니다.");
+                     console.log("서버에 요청을 보냅니다")
+                     setTimeout(
+                         ()=> {
+                             console.log("요청 성공")
+                         },
+                         2000)
+                         this.setState({refreshing : false})
+                 }
+                }
+                // ItemSeparatorComponent= {{{ highlighted, leadingItem}}=> {
+
+                // }}
                  >
 
                  </FlatList>

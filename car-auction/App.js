@@ -8,6 +8,8 @@ createAppContainer
 from 'react-navigation';
 import {Ionicons} from '@expo/vector-icons'
 import MyCarListScreen from './src/screens/MyCarListScreen'
+import MyCarDetailScreen from './src/screens/MyCarDeatilScreen';
+import MyCarAddScreen from './src/screens/MyCarAddScreen';
 
 const auction = function tempAuction(){
     return(
@@ -34,6 +36,12 @@ const defaultNavigationOptions={
 const MycarStack = createStackNavigator({
   'MyCarList':{
     screen:MyCarListScreen
+  },
+  'MyCarDetail' : {
+    screen : MyCarDetailScreen
+  },
+  MyCarAdd : {
+    screen : MyCarAddScreen
   }
 },
 {
