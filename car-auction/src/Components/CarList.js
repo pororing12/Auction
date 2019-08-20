@@ -10,14 +10,16 @@ export default class CarList extends Component {
         }
     }
     static defaultProps = {
-        carList : Object()
+        carList : Object(),
+        toNavigate : 'myCarDetail'
     }
 
     renderCarItem({item, index, separators}){
+       
         return (
             <CarItem 
             item = {item}
-            onPress = {() => this.props.navigation.push('MyCarDetail',{
+            onPress = {() => this.props.navigation.push(this.props.toNavigate,{
                 item:item
             })
             } 

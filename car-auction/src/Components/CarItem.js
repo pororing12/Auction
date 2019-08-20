@@ -1,6 +1,8 @@
 import React,{Component} from 'react'
-import{View, Text,TouchableOpacity, Image, StyleSheet} from 'react-native'
+import{View, Text,TouchableOpacity, Image, StyleSheet, Dimensions} from 'react-native'
 import {Ionicons} from '@expo/vector-icons'
+
+const winSize = Dimensions.get('screen')
 
 export default class CarItem extends Component {
     static defaultProps = {
@@ -9,31 +11,35 @@ export default class CarItem extends Component {
             manufacturer : '',
             model : '',
             year : 2000,
-            image : ''
+            image : '',
+            price : ''
         },
         style : {},
         onPress : ()=>(console.log('onPress'))
     }
     render() {
         return (
+           <View style = {{borderBottomColor : "#bbb", borderBottomWidth : StyleSheet.hairlineWidth}}>
             <TouchableOpacity style = {[styles.container, this.props.style]}
                             onPress = {this.props.onPress}>
                 <View style = {{flex : 1}}>
-                <Image source = {{uri : this.props.item.image}} style = {{width :100, height : '100%'}}></Image>
+                <Image source = {{uri : this.props.item.image}} style = {{width :'130%', height : '130%', resizeMode : 'contain'}} ></Image>
                 </View>
 
-                <View style = {{flex : 1, marginLeft : 50}}>
+                <View style = {{flex : 1.5, marginLeft : 50}}>
                 <Text style = {{fontSize : 20, fontWeight : 'bold', }}>{this.props.item.model}</Text>
-                <Text><Ionicons name = 'ios-calendar'></Ionicons>{this.props.item.manufacturer} {this.props.item.year}
+                <Text><Ionicons name = 'ios-business'></Ionicons>{this.props.item.manufacturer}<Ionicons name = 'ios-calendar'>{this.props.item.year}</Ionicons>
                 <Ionicons  name = 'ios-trending-up'></Ionicons></Text>
+
                 </View>
                 
-                <View style = {{flex : 1}}>
-
+                <View style = {{flex : 1, justifyContent : 'center', alignItems : 'center'}}>
+                <Text style = {{fontSize : 23, color : "#bbb", marginLeft : 10}}>{this.props.item.price}</Text>
                 </View>
             
                 <Text></Text>
             </TouchableOpacity>
+            </View>
         )
     }
 }

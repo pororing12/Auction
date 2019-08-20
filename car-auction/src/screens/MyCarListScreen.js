@@ -12,14 +12,16 @@ const mockData = [
         manufacturer : '람보르기니',
         model : 'huracan-evo',
         year : 2019,
-        image : 'https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/gateway-family/huracan/car/huracan-evo.png'
+        image : 'https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/gateway-family/huracan/car/huracan-evo.png',
+        
     },
     {
         vin : '보배드림',
         manufacturer : 'Tesla',
         model : 'Model 3',
         year : 2017,
-        image : 'https://ccnwordpress.blob.core.windows.net/journal/2018/08/EIBACH-TESLA-MODEL-3-After.jpg'
+        image : 'https://ccnwordpress.blob.core.windows.net/journal/2018/08/EIBACH-TESLA-MODEL-3-After.jpg',
+        
     }
 ]
 

@@ -20,6 +20,22 @@ export default class LoginScreen extends Component {
           )
         }
     }
+
+    componentDidMount() {
+        this.checkLogined();
+    }
+
+    checkLogined = async () => {
+        let user = AsyncStorage.getItem('loginuser');
+
+        this.setState({ loginId : user});
+        if(user) {
+            this.props.navigation.navigate("MyCarList", {
+                loginId : user
+            })
+        }
+    }
+
     submitSignup = async() => {
         const userid = this.state.userid;
         const pwd = this.state.pwd;
@@ -29,9 +45,14 @@ export default class LoginScreen extends Component {
             alert("이미 가입된 아이디입니다")
             return false
         }
-        AsyncStorage.setItem(`user:${userid}`, pwd);
-        return this.props.navigation.navigate('MyCarList', {
-            loginId : loginId
+
+        await AsyncStorage.setItem(`user : ${userid}`, pwd);
+
+        await AsyncStorage.setItem(`loginuser`, userid);
+
+        
+        this.props.navigation.navigate('MyCarList', {
+            loginId : userid
         }
       )
     }
@@ -51,7 +72,7 @@ export default class LoginScreen extends Component {
                     </TextInput>
                     <TextInput 
                         style = {styles.textinput} 
-                        placeholder = '비밀번호' 
+                        placeholder = '비밀번호'
                         secureTextEntry = {true}
                         onChangeText = {(text) => this.setState({pwd:text})}
                         >   

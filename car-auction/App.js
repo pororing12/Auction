@@ -11,6 +11,7 @@ import MyCarListScreen from './src/screens/MyCarListScreen'
 import MyCarDetailScreen from './src/screens/MyCarDeatilScreen';
 import MyCarAddScreen from './src/screens/MyCarAddScreen';
 import LoginScreen from './src/screens/LoginScreen';
+import AuctionListScreen from './src/screens/AuctionListScreen';
 
 const auction = function tempAuction(){
     return(
@@ -27,17 +28,18 @@ const setting =function tempSettings(){
 
 const defaultNavigationOptions={
       headerTintColor:'white',
+      
+      
       headerStyle:{
       backgroundColor:'tomato',
+      
       },
 };
 
 
 
 const MycarStack = createStackNavigator({
-  'Login' :  {
-    screen : LoginScreen
-  },
+  
   'MyCarList':{
     screen:MyCarListScreen
   },
@@ -52,15 +54,20 @@ const MycarStack = createStackNavigator({
     defaultNavigationOptions
 })
 
-
-
+const AuctionStack = createStackNavigator({
+  AuctionList : {
+    screen : AuctionListScreen
+  },
+}, {
+  defaultNavigationOptions
+})
 
 const tabNavigator = createBottomTabNavigator({
   'MyCars':{
     screen:MycarStack
   },
   'Auction':{
-    screen:auction
+    screen: AuctionStack
   },
   'Settings':{
   screen:setting
@@ -87,20 +94,31 @@ const tabNavigator = createBottomTabNavigator({
   color={tintColor}
   />
   );
-
+  
 
   },
 
-
-
-  }),
-
-
-
+  })
 
   })
 
-const AppContainer = createAppContainer(tabNavigator)
+  const RootStack = createStackNavigator(
+    {
+    'Login':{
+    screen: LoginScreen
+    },
+    
+    Main: {
+    screen: tabNavigator,
+    },
+    },{
+    mode:'modal',
+    headerMode:'none'
+    
+    })
+    
+    const AppContainer = createAppContainer(RootStack);
+
 
 
 
